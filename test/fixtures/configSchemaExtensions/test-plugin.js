@@ -60,12 +60,20 @@ class TestPlugin {
       }
     );
 
-    serverless.configSchemaHandler.defineFunctionProperties('someProvider', {
+    serverless.configSchemaHandler.defineFunctionProperties(['someProvider', 'otherProvider'], {
       properties: {
-        someFunctionStringProp: { type: 'string' },
-        someRequiredFunctionNumberProp: { type: 'number' },
+        otherFunctionStringProp: { type: 'string' },
+        otherRequiredFunctionNumberProp: { type: 'number' },
       },
-      required: ['someRequiredFunctionNumberProp'],
+      required: ['otherRequiredFunctionNumberProp'],
+    });
+
+    serverless.configSchemaHandler.defineFunctionProperties({
+      properties: {
+        yetAnotherFunctionStringProp: { type: 'string' },
+        yetAnotherRequiredFunctionNumberProp: { type: 'number' },
+      },
+      required: ['yetAnotherRequiredFunctionNumberProp'],
     });
 
     serverless.configSchemaHandler.defineTopLevelProperty('top', {
